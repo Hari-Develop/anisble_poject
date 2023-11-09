@@ -9,7 +9,7 @@
     - name: copying the config file
       ansible.builtin.copy:
         src: expens.conf
-        dest: /etc/nginx/default.d/expense.conf
+        dest: /etc/nginx/default.d/expens.conf
         remote_src: yes
     - name: removing directory
       ansible.builtin.file:
