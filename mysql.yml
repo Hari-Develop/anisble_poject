@@ -13,7 +13,7 @@
         name: mysql-community-server
         state: present
     - name: setting-up-root password
-      ansible.builtin.shell: --set-root-pass ExpenseApp@1
+      ansible.builtin.shell: --set-root-pass -p{{MYSQL_PASSWORD}}
     - name: staring the service
       ansible.builtin.service:
         enabled: true
