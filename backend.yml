@@ -23,6 +23,7 @@
       ansible.builtin.unarchive:
         src: https://expense-artifacts.s3.amazonaws.com/backend.zip
         dest: /app
+        remote_src: yes
     - name: changing the directory & installing the dependence
       ansible.builtin.shell: npm install
       args:
