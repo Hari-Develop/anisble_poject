@@ -10,7 +10,6 @@
       ansible.builtin.copy:
         src: expense.conf
         dest: /etc/nginx/default.d/expense.conf
-        remote_src: yes
     - name: removing directory
       ansible.builtin.file:
         path: /usr/share/nginx/html
