@@ -1,0 +1,40 @@
+- name: setuping the backend server
+  hosts: all
+  tasks:
+    - name: disabling node js 18
+      ansible.builtin.dnf:
+        name: nodejs
+        state: absent
+    - name: enabling the nodejs 18
+      ansible.builtin.shell: dnf module enable nodejs:18 -y
+    - name: installing the nodejs:18
+      ansible.builtin.dnf:
+        name: nodejs
+        state: present
+    - name: adding application user
+      ansible.builtin.user:
+        name: expense
+    - name: adding directory
+      ansible.builtin.file:
+        path: /app
+        state: directory
+    - name: changing the directory and unzipping the content
+      ansible.builtin.unarchive:
+        src: https://expense-artifacts.s3.amazonaws.com/backend.zip
+        dest: /app
+    - name: changing the directory & installing the dependence
+      ansible.builtin.shell: npm install
+      args:
+        chdir: /app
+
+    - name: copying the backend service file
+      ansible.builtin.copy:
+        src: backend.service
+        dest: /etc/systemd/system/backend.service
+    - name: starting the systemd file
+      ansible.builtin.systemd:
+        daemon_reload: true
+        state: restarted
+        enabled: true
+
+
