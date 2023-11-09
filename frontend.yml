@@ -6,3 +6,11 @@
       ansible.builtin.dnf:
         name: nginx
         state: present
+    - name: copying the congfig file
+      ansible.builtin.copy:
+        src: expense.conf
+        dest: /etc/nginx/default.d/expense.conf
+    - name: removing directory
+      ansible.builtin.file:
+        path: /usr/share/nginx/html
+        state: absent
