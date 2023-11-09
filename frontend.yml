@@ -1,0 +1,7 @@
+- name: fronted
+  hosts: all
+  tasks:
+    - name: installing the nginx server
+      ansible.builtin.dnf:
+        name: nginx
+        state: latest
