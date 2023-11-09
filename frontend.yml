@@ -1,5 +1,6 @@
 - name: fronted
   hosts: all
+  become: yes
   tasks:
     - name: installing the nginx server
       ansible.builtin.dnf:
