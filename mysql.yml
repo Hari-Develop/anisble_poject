@@ -14,6 +14,7 @@
         state: present
     - name: staring the service
       ansible.builtin.service:
+        name: mysqld
         enabled: true
         state: restarted
     - name: setting-up-root password
