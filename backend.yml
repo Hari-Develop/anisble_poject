@@ -35,6 +35,7 @@
         dest: /etc/systemd/system/backend.service
     - name: starting the systemd file
       ansible.builtin.systemd:
+        name: backend
         daemon_reload: true
         state: restarted
         enabled: true
