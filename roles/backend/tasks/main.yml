@@ -1,7 +1,4 @@
-- name: setuping the backend server
-  hosts: all
-  become: yes
-  tasks:
+
     - name: disabling node js 18
       ansible.builtin.dnf:
         name: nodejs
@@ -19,16 +16,14 @@
       ansible.builtin.user:
         name: expense
 
-    - name: adding directory
-      ansible.builtin.file:
-        path: /app
-        state: directory
 
-    - name: changing the directory and unzipping the content
-      ansible.builtin.unarchive:
-        src: https://expense-artifacts.s3.amazonaws.com/backend.zip
-        dest: /app
-        remote_src: yes
+    - name: creating the directy with the import
+      ansible.builtin.import_role:
+        name: common
+        tasks_from: expensecc
+      vars:
+        appli_dir: /app
+        component: backend
 
     - name: changing the directory & installing the dependence
       ansible.builtin.shell: npm install
