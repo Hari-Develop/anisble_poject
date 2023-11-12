@@ -4,19 +4,23 @@
   tasks:
     - name: disabling the latest version of mysql
       ansible.builtin.shell: dnf module disable mysql -y
+
     - name: copying the mysql repo
       ansible.builtin.copy:
         src: mysql.repo
         dest: /etc/yum.repos.d/mysql.repo
+
     - name: installing mysql server
       ansible.builtin.dnf:
         name: mysql-community-server
         state: present
+
     - name: staring the service
       ansible.builtin.service:
         name: mysqld
         enabled: true
         state: restarted
+
     - name: setting-up-root password
       ansible.builtin.shell: mysql_secure_installation --set-root-pass {{MY_SQL_PASSWORD}}
 
