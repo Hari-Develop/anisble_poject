@@ -1,0 +1,10 @@
+- name: adding directory
+  ansible.builtin.file:
+    path: /app
+    state: directory
+
+- name: changing the directory and unzipping the content
+  ansible.builtin.unarchive:
+    src: https://expense-artifacts.s3.amazonaws.com/backend.zip
+    dest: /app
+    remote_src: yes
