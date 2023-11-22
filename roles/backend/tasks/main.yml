@@ -48,6 +48,6 @@
         state: present
 
     - name: loading scheme
-      ansible.builtin.shell: mysql -h 172.31.32.190 -uroot -p{{MYSQL_ROOT_PASSWORD}} < /app/schema/backend.sql
+      ansible.builtin.shell: mysql -h mysql-dev.unlockers.online -uroot -p{{MYSQL_ROOT_PASSWORD}} < /app/schema/backend.sql
 
 

@@ -1,7 +1,4 @@
-- name: mysql server setup
-  hosts: all
-  become: yes
-  tasks:
+
     - name: disabling the latest version of mysql
       ansible.builtin.shell: dnf module disable mysql -y
 
