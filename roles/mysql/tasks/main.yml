@@ -5,6 +5,7 @@
     - name: copying the mysql repo
       ansible.builtin.copy:
         src: mysql.repo
+        remote_src : yes
         dest: /etc/yum.repos.d/mysql.repo
 
     - name: installing mysql server
